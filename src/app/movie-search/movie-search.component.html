@@ -1,0 +1,22 @@
+<div class="search-container">
+    <input type="text" [(ngModel)]="query" placeholder="Search for a movie" class="search-input">
+    <button (click)="search()" class="search-button">Search</button>
+  </div>
+  
+  <div *ngIf="movies">
+    <ul class="movie-list">
+      <li *ngFor="let movie of pagedMovies">
+        <h3>{{ movie.title }}</h3>
+        <p>Release Date: {{ movie.release_date }}</p>
+        <p>Overview: {{ movie.overview }}</p>
+        <p>Ratings: {{ movie.vote_average }}</p>
+        <hr>
+      </li>
+      
+    </ul>
+    
+    <h1 *ngIf="movies.length === 0" id="movieNotfound">No movie found with your search.</h1>
+  
+    <pagination-controls (pageChange)="pageChanged($event)" previousLabel="Previous" nextLabel="Next"></pagination-controls>
+  </div>
+  
